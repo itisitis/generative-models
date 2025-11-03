@@ -38,6 +38,7 @@ class DiffusionEngine(pl.LightningModule):
         no_cond_log: bool = False,
         compile_model: bool = False,
         en_and_decode_n_samples_a_time: Optional[int] = None,
+        dual_concat: bool = False,
     ):
         super().__init__()
         self.log_keys = log_keys
@@ -47,7 +48,7 @@ class DiffusionEngine(pl.LightningModule):
         )
         model = instantiate_from_config(network_config)
         self.model = get_obj_from_str(default(network_wrapper, OPENAIUNETWRAPPER))(
-            model, compile_model=compile_model
+            model, compile_model=compile_model, dual_concat=dual_concat
         )
 
         self.denoiser = instantiate_from_config(denoiser_config)

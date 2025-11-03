@@ -724,6 +724,7 @@ def run_img2vid(
     cond_view=None,
     decoding_t=None,
     cond_mv=True,
+    part_maps=False,
 ):
     options = version_dict["options"]
     H = version_dict["H"]
@@ -792,6 +793,7 @@ def run_img2vid(
         force_cond_zero_embeddings=options.get("force_cond_zero_embeddings", None),
         return_latents=False,
         decoding_t=decoding_t,
+        part_maps=part_maps,
     )
 
     return samples
@@ -921,6 +923,7 @@ def do_sample(
     T=None,
     additional_batch_uc_fields=None,
     decoding_t=None,
+    part_maps=False,
 ):
     force_uc_zero_embeddings = default(force_uc_zero_embeddings, [])
     batch2model_input = default(batch2model_input, [])
@@ -989,7 +992,10 @@ def do_sample(
                     else:
                         additional_model_inputs[k] = batch[k]
 
-                shape = (math.prod(num_samples), C, H // F, W // F)
+                if part_maps:
+                    shape = (math.prod(num_samples), C * 2, H // F, W // F)
+                else:
+                    shape = (math.prod(num_samples), C, H // F, W // F)
                 randn = torch.randn(shape).to("cuda")
 
                 def denoiser(input, sigma, c):
