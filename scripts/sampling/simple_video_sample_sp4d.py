@@ -54,7 +54,7 @@ def sample(
     model_path: Optional[str] = "checkpoints/sp4d.safetensors",
     output_folder: Optional[str] = "outputs",
     num_steps: Optional[int] = 50,
-    img_size: int = 576,  # image resolution
+    img_size: int = 512,  # image resolution
     n_frames: int = 4,  # number of input and output video frames
     seed: int = 23,
     encoding_t: int = 8,  # Number of frames encoded at a time! This eats most VRAM. Reduce if necessary.

@@ -5,6 +5,18 @@
 ## News
 
 
+**Nov 4, 2025**
+- We are releasing **[Stable Part Diffusion 4D (SP4D)](https://huggingface.co/stabilityai/sp4d)**, a video-to-4D diffusion model for multi-view part video synthesis and animatable 3D asset generation. For research purposes:
+    - **SP4D** was trained to generate 48 frames (4 video frames x 12 camera views) at 576x576 resolution, given a 4-frame input video of the same size, ideally consisting of white-background images of a moving object.
+    - Based on our previous 4D model [SV4D 2.0](https://huggingface.co/stabilityai/sv4d2.0), **SP4D** can simultaneously generate multi-view RGB videos as well as the corresponding kinematic part segmentations that are consistency across time and camera views.
+    - The generated part videos can then be used to create animation-ready 3D assets with part-aware rigging capabilities.
+    - Please check our [project page](https://stablepartdiffusion4d.github.io/), [arxiv paper](https://arxiv.org/pdf/2509.10687) and [video summary](https://www.youtube.com/watch?v=FXEFeh8tf0k) for more details.
+
+**QUICKSTART** :
+- Setup environment following the SV4D instructions and download [sp4d.safetensors](https://huggingface.co/stabilityai/sp4d) from HuggingFace into `checkpoints/`
+- Run `python scripts/sampling/simple_video_sample_sp4d.py --input_path assets/sv4d_videos/cows.gif --output_folder outputs` to generate multi-view part videos given the sample input.
+
+
 **May 20, 2025**
 - We are releasing **[Stable Video 4D 2.0 (SV4D 2.0)](https://huggingface.co/stabilityai/sv4d2.0)**, an enhanced video-to-4D diffusion model for high-fidelity novel-view video synthesis and 4D asset generation. For research purposes:
     - **SV4D 2.0** was trained to generate 48 frames (12 video frames x 4 camera views) at 576x576 resolution, given a 12-frame input video of the same size, ideally consisting of white-background images of a moving object.
