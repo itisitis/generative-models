@@ -240,6 +240,14 @@ python scripts/util/generate_robotics_geometric_scene.py \
   --seed 42
 ```
 
+Evaluate reprojection consistency:
+
+```shell
+python scripts/util/evaluate_robotics_geometry.py \
+  --dataset-dir outputs/robotics_geometry \
+  --max-mean-error-px 0.25
+```
+
 This repository uses PEP 517 compliant packaging using [Hatch](https://hatch.pypa.io/latest/).
 
 To build a distributable wheel, install `hatch` and run `hatch build`
